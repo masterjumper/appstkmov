@@ -2,10 +2,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const speciesSlice = createSlice(
+export const productsSlice = createSlice(
  
   {
-    name: 'species',
+    name: 'products',
     initialState:{
         page: null,
         data:[],
@@ -15,14 +15,14 @@ export const speciesSlice = createSlice(
         next:'first',
         previous:null,
         refreshing:false,
-        count:null        
+        count:null
     },
     reducers: {
-        getList: (state, action) => {
-            state.data = [...state.data, ...action.payload];            
+        getList: (state, action) => {            
+            state.data = [...state.data, ...action.payload];
             state.filtered = [...state.data, ...action.payload];
             state.master = [...state.data, ...action.payload];
-            state.loading = true;
+            state.loading = true;            
             },
         setNext:(state, action)=>{
           state.next = action.payload
@@ -54,8 +54,8 @@ export const speciesSlice = createSlice(
       try {                    
           const response = await axios.get(url)
                                         .then((res) => { 
-                                          //console.log(res.data)                                    
                                           dispatch(getList(res.data))
+                                          dispatch(setRefresh(true))
                                           /*dispatch(getList(res.data.results))
                                           dispatch(setNext(res.data.next))
                                           dispatch(setRefresh(true))
@@ -71,7 +71,7 @@ export const speciesSlice = createSlice(
 export const get_fil=(fil, lista) => (dispatch) =>{  
   if(fil){    
       const filtered =  lista.master.filter(
-            (item) => item.name.toUpperCase().includes(fil.toUpperCase())
+            (item) => item.prodsc.toUpperCase().includes(fil.toUpperCase())
           );
       dispatch(getListFil(filtered))                                 
   }
@@ -81,6 +81,6 @@ export const get_all = () => (dispatch) =>{
   dispatch(getListAll())
 }
 // Action creators are generated for each case reducer function  
-export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll } = speciesSlice.actions
+export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll } = productsSlice.actions
 
-export default speciesSlice.reducer
+export default productsSlice.reducer

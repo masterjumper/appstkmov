@@ -50,7 +50,8 @@ const AppBar = () => {
     <View style={ styles.container }>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.scroll}>
         <AppBarTab active to="/">Home</AppBarTab>
-        <AppBarTab active to="/species">Species</AppBarTab>
+        {/* <AppBarTab active to="/species">Species</AppBarTab> */}
+        <AppBarTab active to="/products">Products</AppBarTab>
       </ScrollView>
     </View>)
 }
