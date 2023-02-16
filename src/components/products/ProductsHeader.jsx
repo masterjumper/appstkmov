@@ -10,11 +10,19 @@ const ProductsHeader = props =>{
     return (
         <View style={{flexDirection:'row', paddingBottom:1}}>
                 <View style={{ flexGrow:0 }}>
-                <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
-                {/*<Image style={styles.image} source= {{ uri:
-                    `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
-                        }}></Image>*/}
-                </ImageBackground>         
+                <Image
+                    style={styles.image} 
+                    source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}
+                >
+                </Image>
+                {/* <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}> */}
+                    {/* <Image 
+                        style={styles.image} 
+                        source= {{ 
+                                    uri:`${imgURL + props.procodbar.split('/')[props.procodbar.split('/').length - 2]}.jpg`
+                                }}>
+                    </Image> */}
+                {/* </ImageBackground>          */}
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
                     <StyledText style={styles.language}>{props.prodsc.toUpperCase()}{props.proid}</StyledText>

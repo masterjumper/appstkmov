@@ -4,6 +4,7 @@ import {Routes, Route}  from 'react-router-native';
 
 //import SpeciesList from '../species/SpeciesList'
 import ProductsList from '../products/ProductsList';
+import ProductsDetail from '../products/ProductsDetail';
 
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
@@ -18,6 +19,11 @@ const Main = () => {
                 <Route 
                     path="products" 
                     element={<ProductsList />} 
+                    > 
+                </Route>
+                <Route 
+                    path="productsdetail" 
+                    element={<ProductsDetail />} 
                     > 
                 </Route>       
             </Routes> 

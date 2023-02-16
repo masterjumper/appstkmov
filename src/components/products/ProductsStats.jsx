@@ -36,7 +36,7 @@ const ProductsStats = props =>{
             
         </View>
         
-        <View>            
+        {/* <View>            
             <StyledText fontWeight='bold' align='center'> {props.prostk}</StyledText>
             <StyledText >Stock</StyledText>
         </View>
@@ -44,7 +44,7 @@ const ProductsStats = props =>{
         <View>            
             <StyledText fontWeight='bold' align='center'> {props.procodbar}</StyledText>
             <StyledText >CodeBar</StyledText>            
-        </View> 
+        </View> */} 
         
     </View>
     )

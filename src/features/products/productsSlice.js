@@ -19,7 +19,7 @@ export const productsSlice = createSlice(
     },
     reducers: {
         getList: (state, action) => {            
-            state.data = [...state.data, ...action.payload];
+            //state.data = [...state.data, ...action.payload];
             state.filtered = [...state.data, ...action.payload];
             state.master = [...state.data, ...action.payload];
             state.loading = true;            
@@ -42,9 +42,12 @@ export const productsSlice = createSlice(
         },
         getListAll:(state, action)=>{          
           state.filtered = [];
-          state.filtered = [...state.data];          
+          state.filtered = [...state.master];          
           state.loading = false; 
-        }        
+        },
+        setItem:(state, action)=>{
+
+        }       
       //other action item of list: something     
     },
   })
@@ -80,7 +83,34 @@ export const get_fil=(fil, lista) => (dispatch) =>{
 export const get_all = () => (dispatch) =>{  
   dispatch(getListAll())
 }
+
+export const set_item = (url, item) => async(dispatch) =>{  
+  if(url){  
+    try {  
+          console.log('url ', url);                  
+          console.log('item ', item);                  
+          
+          const response = await axios.put(url, item.proid, item.proimp)
+                              .then((res) => { 
+                                //dispatch(getList(res.data))
+                                //dispatch(setRefresh(true))
+                                
+                                /*dispatch(getList(res.data.results))
+                                dispatch(setNext(res.data.next))
+                                dispatch(setRefresh(true))
+                                dispatch(setCount(res.data.count))
+                                dispatch(setPrevious(res.data.previous)) */                                          
+                                
+                              })
+                              
+        } catch (err) {
+          throw new Error((err)=>console.log(err));
+        }
+  }
+  //dispatch(setItem(item))
+}
+
 // Action creators are generated for each case reducer function  
-export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll } = productsSlice.actions
+export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll, setItem } = productsSlice.actions
 
 export default productsSlice.reducer

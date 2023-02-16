@@ -1,5 +1,5 @@
 import React, { useEffect, useState}  from 'react';
-import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator, TouchableOpacity, TouchableHighlight } from 'react-native';
+import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator, Text, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/products/productsSlice'
 
@@ -32,11 +32,11 @@ const ProductsList = () => {
 
   useEffect(() => { 
     //if(list.next){
-      dispatch(getAsync(currentUrl)); 
-      console.log('useEffect');      
-      console.log('----------------------------------------------------------------------');      
+      dispatch(getAsync(currentUrl));       
+      setSearch([])  
     //}
-  },[dispatch, currentUrl]);
+  //},[dispatch, currentUrl]);
+  },[]);
 
   const searchFilter=(text)=>{    
     if(text){       
@@ -45,7 +45,7 @@ const ProductsList = () => {
     }else{                  
       setSearch(text);     
       dispatch(get_all());
-    }  
+    }
   }
   
   return (
@@ -58,13 +58,16 @@ const ProductsList = () => {
           placeholder='Search Here'
           underlineColorAndroid="transparent"
           onChangeText={(text)=>searchFilter(text)}
-        />
-        
+        />        
         <FlatList contentContainerStyle={{ paddingBottom: 250 }}            
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
-                  <Products {...item} />
+              <TouchableOpacity activeOpacity={0.01}>
+                  <Link to={'/productsdetail'} state={{item}}>
+                    <Products {...item} />
+                  </Link>
+              </TouchableOpacity>
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        
@@ -103,7 +106,8 @@ const styles = StyleSheet.create({
     borderColor:'black',
     backgroundColor:'grey',
     borderRadius: 6
-  }
+  },
+  
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;

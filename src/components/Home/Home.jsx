@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <View style={styles.vista} > 
         <Image source={require('../../../assets/darth.png')}></Image>     
-        <Image source={require('../../../assets/home.png')}></Image>
+        {/* <Image source={require('../../../assets/home.png')}></Image> */}
     </View>    
   );
 };
