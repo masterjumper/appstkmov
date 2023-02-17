@@ -6,36 +6,23 @@ export const productsSlice = createSlice(
  
   {
     name: 'products',
-    initialState:{
-        page: null,
+    initialState:{        
         data:[],
         filtered:[],
         master:[],
-        loading:true,
-        next:'first',
-        previous:null,
-        refreshing:false,
-        count:null
+        loading:true,        
+        refreshing:false,        
+        registered:null
     },
     reducers: {
-        getList: (state, action) => {            
-            //state.data = [...state.data, ...action.payload];
+        getList: (state, action) => {                        
             state.filtered = [...state.data, ...action.payload];
             state.master = [...state.data, ...action.payload];
             state.loading = true;            
-            },
-        setNext:(state, action)=>{
-          state.next = action.payload
-        },
+            },        
         setRefresh:(state, action)=>{
           state.refreshing =  action.payload
-        },
-        setCount:(state, action)=>{
-          state.count =  action.payload
-        },
-        setPrevious:(state, action)=>{
-          state.previous =  action.payload
-        },        
+        },                       
         getListFil: (state, action) => {          
             state.filtered = action.payload;
             state.loading = false; 
@@ -46,7 +33,7 @@ export const productsSlice = createSlice(
           state.loading = false; 
         },
         setItem:(state, action)=>{
-
+          state.registered = true;
         }       
       //other action item of list: something     
     },
@@ -58,12 +45,7 @@ export const productsSlice = createSlice(
           const response = await axios.get(url)
                                         .then((res) => { 
                                           dispatch(getList(res.data))
-                                          dispatch(setRefresh(true))
-                                          /*dispatch(getList(res.data.results))
-                                          dispatch(setNext(res.data.next))
-                                          dispatch(setRefresh(true))
-                                          dispatch(setCount(res.data.count))
-                                          dispatch(setPrevious(res.data.previous)) */                                          
+                                          dispatch(setRefresh(true))                                                                           
                                         })
       } catch (err) {
         throw new Error(err);
@@ -84,32 +66,19 @@ export const get_all = () => (dispatch) =>{
   dispatch(getListAll())
 }
 
-export const set_item = (url, item) => async(dispatch) =>{  
+export const set_item = (url, proid, proimp) => async(dispatch) =>{  
   if(url){  
-    try {  
-          console.log('url ', url);                  
-          console.log('item ', item);                  
-          
-          const response = await axios.put(url, item.proid, item.proimp)
-                              .then((res) => { 
-                                //dispatch(getList(res.data))
-                                //dispatch(setRefresh(true))
-                                
-                                /*dispatch(getList(res.data.results))
-                                dispatch(setNext(res.data.next))
-                                dispatch(setRefresh(true))
-                                dispatch(setCount(res.data.count))
-                                dispatch(setPrevious(res.data.previous)) */                                          
-                                
+    try { 
+          const response = await axios.put(url + '/' + proid + '/' + proimp)
+                              .then((res) => {                                 
+                                dispatch(setItem())
                               })
                               
         } catch (err) {
-          throw new Error((err)=>console.log(err));
+          throw new Error((err));
         }
-  }
-  //dispatch(setItem(item))
+  }  
 }
-
 // Action creators are generated for each case reducer function  
 export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll, setItem } = productsSlice.actions
 

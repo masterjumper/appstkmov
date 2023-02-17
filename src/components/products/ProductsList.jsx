@@ -20,22 +20,15 @@ const ProductsList = () => {
     return (      
       <View styles={styles.loader}>
         {
-          currentUrl == null ?  '' : <ActivityIndicator size={'large'}/>
+          currentUrl == null ?  '' : <ActivityIndicator size={'large'}/>          
         }
       </View>   
     )
   }
 
-  const loadMoreItems = () => {    
-    //setcurrentUrl(list.next)
-  }
-
-  useEffect(() => { 
-    //if(list.next){
+  useEffect(() => {     
       dispatch(getAsync(currentUrl));       
-      setSearch([])  
-    //}
-  //},[dispatch, currentUrl]);
+      setSearch([])    
   },[]);
 
   const searchFilter=(text)=>{    
@@ -43,7 +36,7 @@ const ProductsList = () => {
       dispatch(get_fil(text, list));
       setSearch(text);
     }else{                  
-      setSearch(text);     
+      setSearch([])       
       dispatch(get_all());
     }
   }
@@ -55,7 +48,7 @@ const ProductsList = () => {
         <TextInput
           style={styles.textInputStyle}
           value={search}
-          placeholder='Search Here'
+          placeholder='Buscar Aqui'
           underlineColorAndroid="transparent"
           onChangeText={(text)=>searchFilter(text)}
         />        
@@ -70,8 +63,7 @@ const ProductsList = () => {
               </TouchableOpacity>
             )}            
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={renderLoader}                        
-            onEndReached = {loadMoreItems}
+            ListFooterComponent={renderLoader}                                    
             onEndReachedThreshold={0.5}
             refreshing={list.refreshing}                       
         />
@@ -79,10 +71,6 @@ const ProductsList = () => {
     </SafeAreaView>
   );
 };
-
-{/* <Link to={'/speciesdetail'} state={{item}}  > 
-                    <Products {...item} />
-                   </Link> */}
 
 const styles = StyleSheet.create({
   separator: {

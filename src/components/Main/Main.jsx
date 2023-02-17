@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import {Routes, Route}  from 'react-router-native';
 
-//import SpeciesList from '../species/SpeciesList'
 import ProductsList from '../products/ProductsList';
 import ProductsDetail from '../products/ProductsDetail';
 
@@ -31,11 +30,3 @@ const Main = () => {
     ) 
 }
 export default Main
-
-/*
-  <Route 
-                    path="species" 
-                    element={<SpeciesList />} 
-                    > 
-                </Route>
-                 */

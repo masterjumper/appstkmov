@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/darth.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.folderinformatica.fldrStore"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "789773ab-2e83-40ae-9077-bac0109c2860"
+      }
     }
   }
 }

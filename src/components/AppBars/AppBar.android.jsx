@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   text:{    
     color: '#999',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,    
   },
   active:{    
     //color: theme.appBar.textPrimary
@@ -49,9 +49,8 @@ const AppBar = () => {
   return (
     <View style={ styles.container }>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.scroll}>
-        <AppBarTab active to="/">Home</AppBarTab>
-        {/* <AppBarTab active to="/species">Species</AppBarTab> */}
-        <AppBarTab active to="/products">Products</AppBarTab>
+        <AppBarTab active to="/">Inicio</AppBarTab>        
+        <AppBarTab active to="/products">Productos</AppBarTab>
       </ScrollView>
     </View>)
 }
